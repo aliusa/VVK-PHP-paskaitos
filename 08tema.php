@@ -13,9 +13,9 @@
 <!---------------------------------------->
 <h3>2.</h3>+
 <?php
-//2. Parašykite sąlygą: jeigu kintamasis $a daugiau už $b, spaudintų tekstą: " a daugiau už b" .
+//2. Parašykite sąlygą: jeigu kintamasis $a daugiau už $b, spaudintų tekstą: "a daugiau už b" .
 	if ($a > $b) {
-		echo " a daugiau už b";
+		echo "a daugiau už b";
 	}
 ?>
 
