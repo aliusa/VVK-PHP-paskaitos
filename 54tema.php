@@ -1,4 +1,5 @@
-﻿<?php
+﻿1 Užduotis. Sukurti kontrolę  Ūgiui > 170 ir Amžiui > 18, jeigu netenkina, meta klaidos pranešimus.
+<?php
 $vardas     = @$_GET ['vardas'];
 $pavarde    = @$_GET ['pavarde'];
 $amzius     = @$_GET ['amzius'];
@@ -21,20 +22,20 @@ if ($vardas && $pavarde && ($ugis > 170) && ($amzius > 18) ){
 	fclose ($f);
 	echo "<a href=\"".$_SERVER['PHP_SELF']."\">Atgal</a>";
 } else {
-	if (@$_GET['a']){
-		echo "klaidos:<br>";
-		if (!$vardas)		echo "nėra vardo<br>";
-		if (!$pavarde)		echo "nėra pavardės<br>";
-		if ($ugis < 170)	echo "netinkamas ūgis<br>";
-		if ($amzius < 18)	echo "netinkamas amžius<br>";
+	if (@$_GET['submit']){
+		echo "klaidos:<br/>";
+		if (!$vardas)		echo "nėra vardo<br/>";
+		if (!$pavarde)		echo "nėra pavardės<br/>";
+		if ($ugis < 170)	echo "netinkamas ūgis<br/>";
+		if ($amzius < 18)	echo "netinkamas amžius<br/>";
 	}
 ?>
 	<form action="<?=$_SERVER['PHP_SELF'];?>" method="GET">
-	<input name="vardas" value='<?php echo @$_GET['vardas'];?>' >
-	<input name="pavarde" value='<?php echo @$_GET['pavarde'];?>'>
-	<input name="amzius" value='<?php echo @$_GET['amzius'];?>'>
-	<input name="ugis" value='<?php echo @$_GET['ugis'];?>'>
-	<input type="submit" name="a" value="a">
+	<input name="vardas" value='<?=@$_GET['vardas'];?>' placeholder="vardas" />
+	<input name="pavarde" value='<?=@$_GET['pavarde'];?>' placeholder="pavardė" />
+	<input name="amzius" value='<?=@$_GET['amzius'];?>' placeholder="amžius" />
+	<input name="ugis" value='<?=@$_GET['ugis'];?>' placeholder="ūgis" />
+	<input type="submit" name="submit" value="Pateikti" />
 	</form>
 <?php
 }
