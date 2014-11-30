@@ -56,7 +56,7 @@
 <?php
 //5. Kokias operacijas atlikti su $a ir $b, kad atspausdintų 11:
 	$a = "10 maišų";
-	$b ="1 maišas";
+	$b = "1 maišas";
 	echo $a + $b;
 ?>
 
