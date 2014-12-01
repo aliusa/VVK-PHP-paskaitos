@@ -29,7 +29,7 @@
 		ftruncate($f, 0);
 ?> 
 
-<script language="JavaScript" type="text/javascript">
+<script type="text/javascript">
 	window.location="<?php echo $_SERVER['PHP_SELF'];?>";
 </script>
 
