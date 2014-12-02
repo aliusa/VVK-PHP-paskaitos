@@ -14,10 +14,10 @@
 	if ($balsas){
 		// apklausos balso irašymas 
 		$h = file($failas);
-		$hits = explode("|",$h[0]);
+		$hits = explode("|", $h[0]);
 
 		$hits[$balsas]++;
-		ksort ($hits); //butina išrikiuoti vel, nes kažkodel išsimaišo elementai
+		ksort ($hits); //butina išrikiuoti vėl, nes kažkodel išsimaišo elementai
 
 		$h = implode ("|", $hits);
 		$fp = fopen($failas, "w");

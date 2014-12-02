@@ -97,7 +97,8 @@ fclose ($f);
 :
 
 15. Skaitliukas.
-:
+Skaitliuką galimą programuoti, kad skaičiuotų peržiūras atnaujinus puslapį, bet tada galima lengvai manipuliuoti skaičių.
+Taipogi galima tikrinti apsilankiosio IP adresą ir pridėti peržiūrą pvz nedaugiau 1 kart per valandą
 
 16. Įrašo trynimas iš tekstinio failo.
 :
