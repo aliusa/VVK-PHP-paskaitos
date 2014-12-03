@@ -107,7 +107,8 @@ Taipogi galima tikrinti apsilankiosio IP adresą ir pridėti peržiūrą pvz ned
 :
 
 18. Balsavimo lenta (Fiksuoto klausimų skaičiaus).
-:
+Balsavimo lentos rezultatus reikia įrašyti į failą arba duomenų bazę, kad būtų galima palyginti atsakymų pasirinkimus.
+Pasiskirstymą galima vizualizuoti įvairiais būdais.
 
 19. Pagrindinės MySQL funkcios.
 SELECT, UPDATE, INSERT, DROP, ALTER, CREATE
