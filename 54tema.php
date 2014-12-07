@@ -9,7 +9,7 @@ $failas	= $_SERVER['SCRIPT_FILENAME'].".txt";
 if ($vardas && $pavarde && ($ugis > 170) && ($amzius > 18) ){
 	$informacija = $vardas."|".$pavarde ."|".  $amzius ."|". $ugis ; 
 
-	$f=fopen($failas, "a"); 
+	$f = fopen($failas, "a"); 
 	fwrite($f, "${informacija}\n"); 
 	fclose($f); 
 	$f = fopen( $failas, "r" );
