@@ -35,7 +35,7 @@
 	}
 	
 	$count = count($arr);
-	echo $count;
+	
 	switch($op) {
 		case 1: //Nuiimam nuo priekio vieną monetą
 				if ($count > 1) array_shift($arr);
