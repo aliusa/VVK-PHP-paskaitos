@@ -1,7 +1,9 @@
-﻿copper,silver,gold,copper,silver,gold,copper,silver,gold
+copper,silver,gold,copper,silver,gold,copper,silver,gold
 silver,gold,gold,gold,gold,gold
 silver,copper,silver,copper,silver,copper,gold,gold
 silver,copper,silver,copper,silver,copper,copper,copper,copper
 silver,copper,silver,copper,silver,copper,copper,copper,gold,gold
 silver,silver,silver,silver,silver
 silver,gold,copper,gold,copper,copper
+silver,copper,silver,copper,silver,copper,copper,copper,copper,copper
+copper,silver,gold

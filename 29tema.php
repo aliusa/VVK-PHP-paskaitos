@@ -6,6 +6,13 @@ galima irasyti dar viena kombinacija
 kitas mygtukas leidzia uzkrauti pasirinkta operacija
 per forma galima pasirinkti kombinacija ir ji isikelia
 */
+	$fileName = $_SERVER['SCRIPT_FILENAME'].".txt";  //failas į kurį įrašysim/nuskaitysim kombinacijas
+	define("MAX", 10);      //maksimalus moenetų kiekis kombinacijoje
+	$op   = @$_GET["op"];   //ką darom, pradžios/galo nuimam/pridedam
+	$link = @$_GET["link"]; //kombinacija
+	$type = @$_GET["type"]; //kokią monetrą prideda/išimam
+
+	//Išsaugom kombinaciją į failą
 	function saveToFile() {
 		global $fileName, $arr;
 		$file = fopen($fileName, "a");
@@ -30,80 +37,96 @@ per forma galima pasirinkti kombinacija ir ji isikelia
 		$menu .= "<a href=\"?op=4&type=copper&link=$link\">PRIDĖTI PRIE GALO VARĮ</a><br/>";
 		$menu .= "<a href=\"?op=4&type=silver&link=$link\">PRIDĖTI PRIE GALO SIDABRĄ</a><br/>";
 		$menu .= "<a href=\"?op=4&type=gold&link=$link\">PRIDĖTI PRIE GALO AUKSĄ</a><br/>";
-		$menu .= "<a href=\"?op=5&link=$link\" style=\"color:red;\">Išsaugoti</a>";
+		$menu .= "<a href=\"?op=5&link=$link\" style=\"color:red;\">Išsaugoti kombinaciją</a>";
 		$menu .= "</td></tr></table><br/>";
 		$menu .= "<a href=\"?\" style=\"color:green;\">PRADŽIA</a>";
 		return $menu;
 	}
+
 	function displaySelection() {
+		//Nuskaitom kombinacijas iš failo
 		global $fileName, $link;
 		$file = fopen($fileName, "r");
 		if (!$file) exit;
 		$line = "";
-		$txt  = "<form action=\"".$_SERVER['PHP_SELF']."?link=$line\" method=\"GET\" >";
-		$txt .= "<select name=\"link\" >";
-		$txt .= "<option value=\"$link,\" >---kombinacija---</option>";
+		$txt = "<b>Kombinacijos:</b>";
 		$i = 1;
 		while(!feof($file)) {
-			$line = fgets($file);
-			$txt .= "<option value=\"$line,\" >$line</option>";
+			//Nuskaitom visą eilutę iš failo ir ištrinam nuo prieko ir galo tarpus
+			$line = trim(fgets($file));
+			$txt .= "<br/><a href=\"?link=$line\">$line</a>";
 			$i++;
 		}
-		$txt .= "</select>";
-		$txt .= "<input type=\"submit\" value=\"Pasirinkti\" />";
-		$txt .= "</form>";
 		fclose($file);
 		return $txt;
 	}
 
-	$fileName = $_SERVER['SCRIPT_FILENAME'].".txt"; 
-	define("MAX", 10);
-	$op   = @$_GET["op"];
-	$link = @$_GET["link"];
-	$type = @$_GET["type"];
-	//$line = @$_GET["line"];
-
+	//Jei nenustatyta kombinacija URL nuorodoje - nustatom
 	if (!$link){
 		$arr = array ("silver", "copper", "silver", "copper", "silver", "copper"); //initial array
 	} else {
-		$arr = explode (",", $link); array_pop ($arr);
+		//Priešingu atveju imam duomenis iš URL
+		$arr = explode (",", $link); //array_pop ($arr);
 	}
 	
 	$count = count($arr);
 
 	switch($op) {
-		case 1: if ($count > 1) array_shift($arr);
+		case 1: //Nuiimam nuo priekio vieną monetą
+				if ($count > 1) array_shift($arr);
 				break;
-		case 2: if ($count < MAX) array_unshift($arr, "$type");
+		case 2: //Pridedam prie priekio vieną monetą
+				if ($count < MAX) array_unshift($arr, "$type");
 				break;
-		case 3: if ($count > 1) array_pop($arr);
+		case 3: //Nuiimam nuo galo vieną monetą
+				if ($count > 1) array_pop($arr);
 				break;
-		case 4: if ($count < MAX) array_push($arr, "$type") ;
+		case 4: //Pridedam prie galo vieną monetą
+				if ($count < MAX) array_push($arr, "$type") ;
 				break;
-		case 5: saveToFile();
+		case 5: //Išsaugom į failą kombinaciją
+				saveToFile();
 				break;
 		default: break;
 	}
 	
-	unset($link);
-	$link = "";
-	foreach($arr as $k => $v) {
-		$link .= "$v,"; //constructs link
+	//nuorodos konstravimas
+	function linkConstr($arr) {
+		global $count;
+		$i = 1;
+		$link = "";
+		foreach($arr as $k => $v) {
+			//jei ne paskutinis elementas - pridedam kablelį
+			$link .= ($i < $count) ? "$v," : "$v";
+			$i++;
+		}
+		return $link;
 	}
+	$link = linkConstr($arr);
 
-	$arrPic = array ( //coin picture array
+	//monetų paveikslėlių masyvas
+	function coinArray() {
+		$mas = array (
 			"silver"	=> "29tema_coin_silver.png",
 			"copper"	=> "29tema_coin_copper.png",
 			"gold"		=> "29tema_coin_gold.png");
+		return $mas;
+	}
+	$arrPic = coinArray();
 
+	//meniu, nuorodos su skritingomis funkcijomis
 	$menu = menu();
 
+	//monetų paveikslėlių kodas
 	$content = "<div align=\"center\">";
 	foreach($arr as $k => $v) {
 		$content .= "<img src=\"{$arrPic[$v]}\" height=50 />";
 	}
 	$content .= "</div>";
 
+	//išvedam į ekraną meniu ir monetų eilutę
 	echo "<div align=\"center\" >$menu<br/>$content</div>";
+
+	//išvedam į ekraną nuskaitytas iš failo kombinacijas
 	echo displaySelection();
 ?>
