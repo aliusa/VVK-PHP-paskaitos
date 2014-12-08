@@ -116,12 +116,10 @@
 		error_reporting(E_ALL);
 		$line = "";
 		$txt = "<b>Kombinacijos:</b>";
-		$i = 1;
 		while(!feof($file)) {
 			//Nuskaitom visą eilutę iš failo ir ištrinam nuo prieko ir galo tarpus
 			$line = trim(fgets($file));
 			$txt .= "<br/><a href=\"?link=$line\">$line</a>";
-			$i++;
 		}
 		fclose($file);
 		return $txt;
