@@ -31,11 +31,10 @@
 		$link = trim($link, SEPERATOR);
 		//Priešingu atveju imam duomenis iš URL
 		$arr = explode (SEPERATOR, $link);
-		//array_pop ($arr);
 	}
 	
 	$count = count($arr);
-	
+
 	switch($op) {
 		case 1: //Nuiimam nuo priekio vieną monetą
 				if ($count > 1) array_shift($arr);
