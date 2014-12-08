@@ -1,13 +1,11 @@
 ﻿<?php
-/*padaryti mygtuka ar nuoroda. irasyti kombinacija
-irasyti masyva ir ji irasyti i faila.
-galima irasyti dar viena kombinacija
-
-kitas mygtukas leidzia uzkrauti pasirinkta operacija
-per forma galima pasirinkti kombinacija ir ji isikelia
+/*
+* Padaryta funkcija, kad galima būtų įrašyti kombinaciją,
+* Nuskaityti visas kombinacijas iš failo su URL nuorodomis
 */
 	$fileName = $_SERVER['SCRIPT_FILENAME'].".txt";  //failas į kurį įrašysim/nuskaitysim kombinacijas
 	define("MAX", 10);      //maksimalus moenetų kiekis kombinacijoje
+	define("SEPERATOR", "|");
 	$op   = @$_GET["op"];   //ką darom, pradžios/galo nuimam/pridedam
 	$link = @$_GET["link"]; //kombinacija
 	$type = @$_GET["type"]; //kokią monetrą prideda/išimam
@@ -16,8 +14,9 @@ per forma galima pasirinkti kombinacija ir ji isikelia
 	function saveToFile() {
 		global $fileName, $arr;
 		$file = fopen($fileName, "a");
-		$txt = implode(",", $arr);
+		$txt = implode(SEPERATOR, $arr);
 		if (filesize($fileName) == 0) {
+			fwrite($file, pack("CCC",0xef,0xbb,0xbf));
 			fwrite($file, $txt);
 		} else {
 			fwrite($file, PHP_EOL.$txt);
@@ -25,52 +24,18 @@ per forma galima pasirinkti kombinacija ir ji isikelia
 		fclose($file);
 	}
 
-	function menu() {
-		global $op, $type, $link;
-		$menu =  "<table width=\"500\" align=\"center\"><tr><td>";
-		$menu .= "<a href=\"?op=1&link=$link\" style=\"color:red;\">NUIMTI IŠ PRIEKIO</a><br/><br/>";
-		$menu .= "<a href=\"?op=2&type=copper&link=$link\">PRIDĖTI PRIE PRIEKIO VARĮ</a><br/>";
-		$menu .= "<a href=\"?op=2&type=silver&link=$link\">PRIDĖTI PRIE PRIEKIO SIDABRĄ</a><br/>";
-		$menu .= "<a href=\"?op=2&type=gold&link=$link\">PRIDĖTI PRIE PRIEKIO AUKSĄ</a>";
-		$menu .= "</td><td>";
-		$menu .= "<a href=\"?op=3&link=$link\" style=\"color:red;\">NUIMTI IŠ GALO</a><br/><br/>";
-		$menu .= "<a href=\"?op=4&type=copper&link=$link\">PRIDĖTI PRIE GALO VARĮ</a><br/>";
-		$menu .= "<a href=\"?op=4&type=silver&link=$link\">PRIDĖTI PRIE GALO SIDABRĄ</a><br/>";
-		$menu .= "<a href=\"?op=4&type=gold&link=$link\">PRIDĖTI PRIE GALO AUKSĄ</a><br/>";
-		$menu .= "<a href=\"?op=5&link=$link\" style=\"color:red;\">Išsaugoti kombinaciją</a>";
-		$menu .= "</td></tr></table><br/>";
-		$menu .= "<a href=\"?\" style=\"color:green;\">PRADŽIA</a>";
-		return $menu;
-	}
-
-	function displaySelection() {
-		//Nuskaitom kombinacijas iš failo
-		global $fileName, $link;
-		$file = fopen($fileName, "r");
-		if (!$file) exit;
-		$line = "";
-		$txt = "<b>Kombinacijos:</b>";
-		$i = 1;
-		while(!feof($file)) {
-			//Nuskaitom visą eilutę iš failo ir ištrinam nuo prieko ir galo tarpus
-			$line = trim(fgets($file));
-			$txt .= "<br/><a href=\"?link=$line\">$line</a>";
-			$i++;
-		}
-		fclose($file);
-		return $txt;
-	}
-
 	//Jei nenustatyta kombinacija URL nuorodoje - nustatom
 	if (!$link){
 		$arr = array ("silver", "copper", "silver", "copper", "silver", "copper"); //initial array
 	} else {
+		$link = trim($link, SEPERATOR);
 		//Priešingu atveju imam duomenis iš URL
-		$arr = explode (",", $link); //array_pop ($arr);
+		$arr = explode (SEPERATOR, $link);
+		//array_pop ($arr);
 	}
 	
 	$count = count($arr);
-
+	echo $count;
 	switch($op) {
 		case 1: //Nuiimam nuo priekio vieną monetą
 				if ($count > 1) array_shift($arr);
@@ -93,13 +58,13 @@ per forma galima pasirinkti kombinacija ir ji isikelia
 	//nuorodos konstravimas
 	function linkConstr($arr) {
 		global $count;
-		$i = 1;
 		$link = "";
 		foreach($arr as $k => $v) {
 			//jei ne paskutinis elementas - pridedam kablelį
-			$link .= ($i < $count) ? "$v," : "$v";
-			$i++;
+			$link .= "$v".SEPERATOR;
 		}
+		//Nuimam nuo galo kablelį
+		$link = rtrim($link, SEPERATOR);
 		return $link;
 	}
 	$link = linkConstr($arr);
@@ -115,6 +80,23 @@ per forma galima pasirinkti kombinacija ir ji isikelia
 	$arrPic = coinArray();
 
 	//meniu, nuorodos su skritingomis funkcijomis
+	function menu() {
+		global $op, $type, $link;
+		$menu =  "<table width=\"500\" align=\"center\"><tr><td>";
+		$menu .= "<a href=\"?op=1&link=$link\" style=\"color:red;\">NUIMTI IŠ PRIEKIO</a><br/><br/>";
+		$menu .= "<a href=\"?op=2&type=copper&link=$link\">PRIDĖTI PRIE PRIEKIO VARĮ</a><br/>";
+		$menu .= "<a href=\"?op=2&type=silver&link=$link\">PRIDĖTI PRIE PRIEKIO SIDABRĄ</a><br/>";
+		$menu .= "<a href=\"?op=2&type=gold&link=$link\">PRIDĖTI PRIE PRIEKIO AUKSĄ</a>";
+		$menu .= "</td><td>";
+		$menu .= "<a href=\"?op=3&link=$link\" style=\"color:red;\">NUIMTI IŠ GALO</a><br/><br/>";
+		$menu .= "<a href=\"?op=4&type=copper&link=$link\">PRIDĖTI PRIE GALO VARĮ</a><br/>";
+		$menu .= "<a href=\"?op=4&type=silver&link=$link\">PRIDĖTI PRIE GALO SIDABRĄ</a><br/>";
+		$menu .= "<a href=\"?op=4&type=gold&link=$link\">PRIDĖTI PRIE GALO AUKSĄ</a><br/>";
+		$menu .= "<a href=\"?op=5&link=$link\" style=\"color:red;\">Išsaugoti kombinaciją</a>";
+		$menu .= "</td></tr></table><br/>";
+		$menu .= "<a href=\"?\" style=\"color:green;\">PRADŽIA</a>";
+		return $menu;
+	}
 	$menu = menu();
 
 	//monetų paveikslėlių kodas
@@ -126,6 +108,25 @@ per forma galima pasirinkti kombinacija ir ji isikelia
 
 	//išvedam į ekraną meniu ir monetų eilutę
 	echo "<div align=\"center\" >$menu<br/>$content</div>";
+
+	function displaySelection() {
+		global $fileName, $link;
+		//Nuskaitom kombinacijas iš failo
+		error_reporting(0);
+		$file = fopen($fileName, "r") or die ("Nėra išsaugotų kombinacijų");
+		error_reporting(E_ALL);
+		$line = "";
+		$txt = "<b>Kombinacijos:</b>";
+		$i = 1;
+		while(!feof($file)) {
+			//Nuskaitom visą eilutę iš failo ir ištrinam nuo prieko ir galo tarpus
+			$line = trim(fgets($file));
+			$txt .= "<br/><a href=\"?link=$line\">$line</a>";
+			$i++;
+		}
+		fclose($file);
+		return $txt;
+	}
 
 	//išvedam į ekraną nuskaitytas iš failo kombinacijas
 	echo displaySelection();
