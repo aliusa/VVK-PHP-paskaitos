@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //4. Perrašykite miestų sąrašo generavimo pavyzdį į funkciją, kuriai perduodamas vienas parametras.
 //Tas parametras valdo nuo kurio elemento spausdina miestų sąrašą.
 //Funkciją iškvieskite su įvairiu parametro dydžiu.

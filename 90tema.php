@@ -1,4 +1,4 @@
-<?php header("Content-Type:text/plain"); ?>
+﻿<?php header("Content-Type:text/plain"); ?>
 http://www.skelbimaizaidimaiorai.lt/php-programavimas-pamokos-kodai/php-egzamino-kontrolinio-testo-klausimai
 
 1. Kintamieji, konstantos, duomenų tipų keitimo funkcijos.

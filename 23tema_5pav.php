@@ -1,4 +1,4 @@
-<table width="100%">
+﻿<table width="100%">
 <?php
 	$a = array("44", "55", "66", "88", "AA"); // spalvu masyvas
 

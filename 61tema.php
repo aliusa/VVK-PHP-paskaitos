@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	//Užduotis: atvaizduoti 5 pasirinkimus, bei balsavimo kiekio liniją atvaizduoji kaip kintamo ilgio paveikslėlį
 	$failas = $_SERVER['SCRIPT_FILENAME'].".txt"; 
 	$balsas = @$_GET['balsas']; //balsavima valdantis kintamasis

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	//Vardų ir skaičių masyvas
 	$arr = array(
 		"John" => 10,

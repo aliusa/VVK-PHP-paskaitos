@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*padaryti mygtuka ar nuoroda. irasyti kombinacija
 irasyti masyva ir ji irasyti i faila.
 galima irasyti dar viena kombinacija

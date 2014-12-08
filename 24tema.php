@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //klasės užduotis - surast internete kodą kuris užkoduoja slaptažodį
 	function randomPassword($pass) {
 		$len = strlen($pass) - 1;

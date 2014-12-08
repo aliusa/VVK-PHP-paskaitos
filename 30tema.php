@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //Užduotis. Išrikiuot pagal skaitmeniną atstumą nuo 4.
 	$a = array(-5,-3,0,1,2,3,4,5,6,7,8);
 	uasort ($a, "rikiavimoFunkcija"); print_r ($a);

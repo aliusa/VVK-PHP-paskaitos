@@ -1,10 +1,10 @@
-<?php
-//padaryk kad eilutes spalvintu paeiliui 3 skirtinom spalvom
+﻿<?php
+//Programa, kuri paeiliui skirtingom spalvom spalvintų eilutes
 $x = 'yellow';
 $y = 'green';
 $z = 'red';
 
-$tr = 11; //eiluciu skaicius
+$tr = 11; //eilučių skaičius
 
 ?><table width="100%" border="1"><?php
 	for ($i=1; $i<$tr; $i++) {

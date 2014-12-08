@@ -1,6 +1,7 @@
-<?php
+﻿<?php
 //23 tema => perdaryt foreach i for
 	error_reporting(E_ALL ^ E_NOTICE);
+	//formos atributų reikšmės
 	$formArr= array("vardas", "pavarde","gmetai","atlyginimas");
 	$dataArr= array("Vardas", "Pavarde","Gimimo_metai","Atlyginimas");
 	echo '<form action = "'.$_SERVER['PHP_SELF'].'.php">';

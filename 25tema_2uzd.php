@@ -1,4 +1,4 @@
-<table width="100%" border="0" cellspacing="0">
+﻿<table width="100%" border="0" cellspacing="0">
 <?php
 	//Spalvų masyvas
 	$a = array("tan", "teal", "blue", "yellow",

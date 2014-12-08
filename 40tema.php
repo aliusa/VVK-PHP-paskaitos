@@ -1,4 +1,4 @@
-<?php //klasės darbas. surasti internete ir paaiškinti 3 masyvines funkcijas ?>
+﻿<?php //klasės darbas. surasti internete ir paaiškinti 3 masyvines funkcijas ?>
 
 <?php /*............................................................*/?>
 

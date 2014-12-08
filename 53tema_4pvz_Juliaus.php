@@ -1,4 +1,4 @@
-<form action = "<?php echo $_SERVER['PHP_SELF'];?>" method="GET">
+﻿<form action = "<?php echo $_SERVER['PHP_SELF'];?>" method="GET">
 	<input type="text" name="name" size="40" maxlength="80">
 	<input type="submit" value="Spausk">
 </form><br/>

@@ -1,4 +1,4 @@
-<a href="<?php echo $_SERVER['PHP_SELF'] ?>">pradinis</a>
+﻿<a href="<?php echo $_SERVER['PHP_SELF'] ?>">pradinis</a>
 <?php
 	define("TABLE_SIZE", 10); //Formos eilučių kiekis.
 	$arr = $_GET; //iš GET gaunam duomenų masyvą

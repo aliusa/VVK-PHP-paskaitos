@@ -1,4 +1,4 @@
-copper,silver,gold,copper,silver,gold,copper,silver,gold
+﻿copper,silver,gold,copper,silver,gold,copper,silver,gold
 silver,gold,gold,gold,gold,gold
 silver,copper,silver,copper,silver,copper,gold,gold
 silver,copper,silver,copper,silver,copper,copper,copper,copper

@@ -73,19 +73,19 @@
 //t.y neturintis pirmo ir paskutinio seno masyvo elementų.
 
 	function ff($arr) {
-		$k = 0;					//pradinis elementų kiekis masyve
+		$k = 0; //pradinis elementų kiekis masyve
 		foreach ($arr as $key) {
-			$k++; 				//iteruojam elementų kiekį masyve
+			$k++; //iteruojam elementų kiekį masyve
 		}
-		$count = $k - 1;		//-1 nes pradėjom nuo 0
+		$count = $k - 1; //-1 nes pradėjom nuo 0
 		$k = 0;
 		foreach ($arr as $key) {
 			if ( ($k === 0) OR ($k === $count) ) {
-				unset($arr[$k]);	//ištrinam elementą iš masyvo
+				unset($arr[$k]); //ištrinam elementą iš masyvo
 			}
 			$k++;
 		}
-		return $arr;			//grąžinam reikšmę
+		return $arr; //grąžinam reikšmę
 	}
 	//pradinis masyvas
 	$arr = array(1,2,3,4,5,66,77,888,999,1000);
@@ -101,17 +101,17 @@
 	function fff($arr) {
 		$k = 0;
 		foreach ($arr as $k) {
-			$k++;					//skaičiuojam elementų kiekį masyve
+			$k++; //iteruojam elementų kiekį masyve
 		}
-		$half = ($k / 2);			//kiek yra puse masyvo?
+		$half = ($k / 2); //kiek yra puse masyvo?
 		
-		global $arr1, $arr2;		//masyvus padarom globaliais
+		global $arr1, $arr2; //masyvus padarom globaliais, kad juos pasiektų už funkcijos
 		$i = 0;
 		foreach ($arr as $k) {
 			if ($arr[$i] <= $half) {
-				$arr1[$k-1] = $arr[$i];	//priskiam originalaus masyvo elementus naujam
+				$arr1[$k-1] = $arr[$i]; //priskiam originalaus masyvo elementus naujam
 				$i++;
-			} else {				//priskiam originalaus masyvo elementus naujam
+			} else { //priskiam originalaus masyvo elementus naujam
 				$arr2[$i-$half] = $arr[$i];
 				$i++;
 			}
@@ -130,11 +130,6 @@
 ?>
 <!---------------------------------------->
 <h3>4.</h2>
-<?php
-//4. Papildykite PHP. $_GET, $_POST - 1. Sąlygos. Autorizacija prisijungimo- autorizacijos pavyzdį,
-//kad reikalautų kontrolinio kodo. Kontrolinis kodas yra laikomas masyve ir turi 2 reikšmes: 321 ir 231.
-//Jis įvedimas į formos tekstinę dėžutę. Neteisingai jį įvedus, vartotojų duomenys nerodomi.
-?>
 <a href="20tema4uzd.php" target="_blank">20tema4uzd.php</a>
 
 <!---------------------------------------->

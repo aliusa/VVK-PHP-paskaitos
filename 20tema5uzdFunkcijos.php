@@ -1,5 +1,6 @@
-<?php
+﻿<?php
 	function fff($uKodas, $code) {
+		//Jei kodas yra masyve - išveadm true, kitu atveju false
 		$k = (in_array($uKodas, $code)) ? true : false;
 		return $k;
 	}

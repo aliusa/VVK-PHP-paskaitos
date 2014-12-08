@@ -1,4 +1,4 @@
-<style>
+﻿<style>
 input[type=text] {border:0px solid #ccc;margin:-1px;padding: 0 2px 0 2px}/**/
 table,thead,tbody,tr,th,td{border: 1px solid #777;border-collapse:collapse;}
 </style>
@@ -10,7 +10,7 @@ table,thead,tbody,tr,th,td{border: 1px solid #777;border-collapse:collapse;}
 		if ($arr['reiksme'][$i] < 10) {$bg .= $colors[0];}
 		elseif ($arr['reiksme'][$i] == 10) {$bg .= $colors[1];}
 		elseif ($arr['reiksme'][$i] > 10) {$bg .= $colors[2];}
-		else {$bg .= $colors[3];} //ERRORRRER
+		else {$bg .= $colors[3];} //ERROR
 		return $bg.';"';
 	}
 	define("TABLE_SIZE", 10); //Formos eilučių kiekis.

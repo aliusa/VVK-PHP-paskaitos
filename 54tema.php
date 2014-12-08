@@ -1,4 +1,4 @@
-﻿1 Užduotis. Sukurti kontrolę  Ūgiui > 170 ir Amžiui > 18, jeigu netenkina, meta klaidos pranešimus.
+﻿Užduotis. Sukurti kontrolę  Ūgiui > 170 ir Amžiui > 18, jeigu netenkina, meta klaidos pranešimus.
 <?php
 $vardas     = @$_GET ['vardas'];
 $pavarde    = @$_GET ['pavarde'];

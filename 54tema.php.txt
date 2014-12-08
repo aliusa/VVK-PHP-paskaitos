@@ -1,4 +1,4 @@
-Monika|Šalčiūtė|22|171
+﻿Monika|Šalčiūtė|22|171
 Ona|Petrulytė|25|196
 Raminta|Darkevičiūtė|23|176
 Tomas|Onavičius|22|202

@@ -1,4 +1,4 @@
-	<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="get">
+﻿	<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="get">
 <?php
 	for ($i = 0; $i <= 10; $i++) {
 		echo 'Vardas: <input type="text" name="Name'.$i.'" /> Balas: <input type="text" name="Balas'.$i.'" /> <br/>';
