@@ -112,6 +112,7 @@
 		global $fileName, $link;
 		//Nuskaitom kombinacijas iš failo
 		error_reporting(0);
+		//exit function if file doesn't exist
 		$file = fopen($fileName, "r") or die ("Nėra išsaugotų kombinacijų");
 		error_reporting(E_ALL);
 		$line = "";
