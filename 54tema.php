@@ -4,7 +4,7 @@ $vardas     = @$_GET ['vardas'];
 $pavarde    = @$_GET ['pavarde'];
 $amzius     = @$_GET ['amzius'];
 $ugis       = @$_GET ['ugis'];
-$failas	= $_SERVER['SCRIPT_FILENAME'].".txt"; 
+$failas	= $_SERVER['SCRIPT_FILENAME'].".txt"; //šio failo pavadinimas + ".txt"
 
 if ($vardas && $pavarde && ($ugis > 170) && ($amzius > 18) ){
 	$informacija = $vardas."|".$pavarde ."|".  $amzius ."|". $ugis ; 
