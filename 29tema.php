@@ -3,9 +3,9 @@
 * Padaryta funkcija, kad galima būtų įrašyti kombinaciją,
 * Nuskaityti visas kombinacijas iš failo su URL nuorodomis
 */
-	$fileName = "29tema.php.txt";  //failas į kurį įrašysim/nuskaitysim kombinacijas
+	$fileName = $_SERVER['SCRIPT_FILENAME'].".txt"; //failas į kurį įrašysim/nuskaitysim kombinacijas
 	define("MAX", 10);      //maksimalus moenetų kiekis kombinacijoje
-	define("SEPERATOR", "|");
+	define("SEPERATOR", "|"); //jungiklis
 	$op   = @$_GET["op"];   //ką darom, pradžios/galo nuimam/pridedam
 	$link = @$_GET["link"]; //kombinacija
 	$type = @$_GET["type"]; //kokią monetrą prideda/išimam
@@ -16,7 +16,6 @@
 		$file = fopen($fileName, "a");
 		$txt = implode(SEPERATOR, $arr);
 		if (filesize($fileName) == 0) {
-			fwrite($file, pack("CCC",0xef,0xbb,0xbf));
 			fwrite($file, $txt);
 		} else {
 			fwrite($file, PHP_EOL.$txt);
@@ -24,12 +23,13 @@
 		fclose($file);
 	}
 
-	//Jei nenustatyta kombinacija URL nuorodoje - nustatom
+	//Jei nenustatyta kombinacija nuorodoje - nustatom
 	if (!$link){
-		$arr = array ("silver", "copper", "silver", "copper", "silver", "copper"); //initial array
+		//pradinis moneų masyvas
+		$arr = array ("silver", "copper", "silver", "copper", "silver", "copper");
 	} else {
 		$link = trim($link, SEPERATOR);
-		//Priešingu atveju imam duomenis iš URL
+		//Priešingu atveju imam duomenis iš nuorodos
 		$arr = explode(SEPERATOR, $link);
 	}
 	
@@ -59,10 +59,10 @@
 		global $count;
 		$link = "";
 		foreach($arr as $k => $v) {
-			//jei ne paskutinis elementas - pridedam kablelį
+			//jei ne paskutinis elementas - pridedam junginį
 			$link .= "$v".SEPERATOR;
 		}
-		//Nuimam nuo galo kablelį
+		//Nuimam nuo galo junginį
 		$link = rtrim($link, SEPERATOR);
 		return $link;
 	}
@@ -80,7 +80,7 @@
 
 	//meniu, nuorodos su skritingomis funkcijomis
 	function menu() {
-		global $op, $type, $link;
+		global $op, $type, $link, $arr;
 		$menu =  "<table width=\"500\" align=\"center\"><tr><td>";
 		$menu .= "<a href=\"?op=1&link=$link\" style=\"color:red;\">NUIMTI IŠ PRIEKIO</a><br/><br/>";
 		$menu .= "<a href=\"?op=2&type=copper&link=$link\">PRIDĖTI PRIE PRIEKIO VARĮ</a><br/>";
@@ -94,6 +94,7 @@
 		$menu .= "</td></tr></table><br/>";
 		$menu .= "<a href=\"?\" style=\"color:green;\">PRADŽIA</a><br/>";
 		$menu .= "<a href=\"?op=5&link=$link\" style=\"color:red;\">Išsaugoti kombinaciją</a>";
+		$menu .= (count($arr) === 10) ? "<br/>Daugiau monetų <b>pridėti</b> negalima" : "" ;
 		return $menu;
 	}
 	$menu = menu();
