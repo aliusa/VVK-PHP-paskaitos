@@ -3,7 +3,7 @@
 * Padaryta funkcija, kad galima būtų įrašyti kombinaciją,
 * Nuskaityti visas kombinacijas iš failo su URL nuorodomis
 */
-	$fileName = $_SERVER['SCRIPT_FILENAME'].".txt";  //failas į kurį įrašysim/nuskaitysim kombinacijas
+	$fileName = "29tema.php.txt";  //failas į kurį įrašysim/nuskaitysim kombinacijas
 	define("MAX", 10);      //maksimalus moenetų kiekis kombinacijoje
 	define("SEPERATOR", "|");
 	$op   = @$_GET["op"];   //ką darom, pradžios/galo nuimam/pridedam
@@ -30,7 +30,7 @@
 	} else {
 		$link = trim($link, SEPERATOR);
 		//Priešingu atveju imam duomenis iš URL
-		$arr = explode (SEPERATOR, $link);
+		$arr = explode(SEPERATOR, $link);
 	}
 	
 	$count = count($arr);
@@ -71,8 +71,8 @@
 	//monetų paveikslėlių masyvas
 	function coinArray() {
 		$mas = array (
-			"silver"	=> "29tema_coin_silver.png",
 			"copper"	=> "29tema_coin_copper.png",
+			"silver"	=> "29tema_coin_silver.png",
 			"gold"		=> "29tema_coin_gold.png");
 		return $mas;
 	}
@@ -101,7 +101,7 @@
 	//monetų paveikslėlių kodas
 	$content = "<div align=\"center\">";
 	foreach($arr as $k => $v) {
-		$content .= "<img src=\"{$arrPic[$v]}\" height=50 />";
+		$content .= "<img src=\"".$arrPic[$v]."\" height=50 />";
 	}
 	$content .= "</div>";
 
@@ -110,13 +110,15 @@
 
 	function displaySelection() {
 		global $fileName, $link;
-		//Nuskaitom kombinacijas iš failo
 		error_reporting(0);
+
 		//exit function if file doesn't exist
 		$file = fopen($fileName, "r") or die ("Nėra išsaugotų kombinacijų");
 		error_reporting(E_ALL);
-		$line = "";
+
 		$txt = "<b>Kombinacijos:</b>";
+
+		//Nuskaitom kombinacijas iš failo
 		while(!feof($file)) {
 			//Nuskaitom visą eilutę iš failo ir ištrinam nuo prieko ir galo tarpus
 			$line = trim(fgets($file));
