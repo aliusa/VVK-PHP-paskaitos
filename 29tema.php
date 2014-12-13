@@ -91,9 +91,9 @@
 		$menu .= "<a href=\"?op=4&type=copper&link=$link\">PRIDĖTI PRIE GALO VARĮ</a><br/>";
 		$menu .= "<a href=\"?op=4&type=silver&link=$link\">PRIDĖTI PRIE GALO SIDABRĄ</a><br/>";
 		$menu .= "<a href=\"?op=4&type=gold&link=$link\">PRIDĖTI PRIE GALO AUKSĄ</a><br/>";
-		$menu .= "<a href=\"?op=5&link=$link\" style=\"color:red;\">Išsaugoti kombinaciją</a>";
 		$menu .= "</td></tr></table><br/>";
-		$menu .= "<a href=\"?\" style=\"color:green;\">PRADŽIA</a>";
+		$menu .= "<a href=\"?\" style=\"color:green;\">PRADŽIA</a><br/>";
+		$menu .= "<a href=\"?op=5&link=$link\" style=\"color:red;\">Išsaugoti kombinaciją</a>";
 		return $menu;
 	}
 	$menu = menu();
@@ -110,11 +110,9 @@
 
 	function displaySelection() {
 		global $fileName, $link;
-		error_reporting(0);
 
-		//exit function if file doesn't exist
-		$file = fopen($fileName, "r") or die ("Nėra išsaugotų kombinacijų");
-		error_reporting(E_ALL);
+		//atidaromas kombinacijų failas, jei nėra - neatvaizduoja
+		$file = @fopen($fileName, "r") or die ("Nėra išsaugotų kombinacijų");
 
 		$txt = "<b>Kombinacijos:</b>";
 
