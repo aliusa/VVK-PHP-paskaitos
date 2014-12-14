@@ -89,7 +89,7 @@
 	}
 	//pradinis masyvas
 	$arr = array(1,2,3,4,5,66,77,888,999,1000);
-	var_dump(ff($arr));
+	print_r(ff($arr));
 ?>
 <!---------------------------------------->
 <h3>3b.</h2>
@@ -99,34 +99,23 @@
 //Masyvo elementų kiekiui suskaičiuoti naudokite $kiekis = count($masyvas); sakinį.
 
 	function fff($arr) {
-		$k = 0;
-		foreach ($arr as $k) {
-			$k++; //iteruojam elementų kiekį masyve
+		$k = 0; //pradinis elementų kiekis masyve
+		foreach ($arr as $key) {
+			$k++;
 		}
-		$half = ($k / 2); //kiek yra puse masyvo?
-		
-		global $arr1, $arr2; //masyvus padarom globaliais, kad juos pasiektų už funkcijos
-		$i = 0;
-		foreach ($arr as $k) {
-			if ($arr[$i] <= $half) {
-				$arr1[$k-1] = $arr[$i]; //priskiam originalaus masyvo elementus naujam
-				$i++;
-			} else { //priskiam originalaus masyvo elementus naujam
-				$arr2[$i-$half] = $arr[$i];
-				$i++;
-			}
-		}
+		$k++;
+		$arr1 = array_slice($arr, 0, $k/2);
+		$arr2 = array_slice($arr, $k/2, $k);
+		return array($arr1, $arr2); //grąžinam masyvus
 	}
+
 	//pradinis masyvas
 	$arr = array(1,2,3,4,5);
-	fff($arr);
+	//priskiriam abi masyvo puses į atskirus masyvus
+	list($a1, $a2) = fff($arr);
 
-	echo "Pradinis masyvas:";
-	var_dump($arr);
-	echo "<br/>Pirma masyvo pusė:";
-	var_dump($arr1);
-	echo "<br/>Antra masyvo pusė:";
-	var_dump($arr2);
+	print_r($a1);
+	print_r($a2);
 ?>
 <!---------------------------------------->
 <h3>4.</h2>
