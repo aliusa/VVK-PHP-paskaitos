@@ -1,6 +1,6 @@
 ﻿<?php
 	//Vardų ir skaičių masyvas
-	$arr = array(
+	$arr = [
 		"John" => 10,
 		"Simon" => 20,
 		"Oona" => 15,
@@ -11,7 +11,7 @@
 		"Stanislava" => 7,
 		"Lukrecija" => 15,
 		"Bozena" => 0
-		);
+    ];
 	
 	//Priklausomai nuo masyve esančio skaičiaus - spalvinam eilutes
 	echo "<table border=1>";

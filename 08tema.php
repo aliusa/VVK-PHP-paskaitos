@@ -11,7 +11,7 @@
 ?>
 
 <!---------------------------------------->
-<h3>2.</h3>+
+<h3>2.</h3>
 <?php
 //2. Parašykite sąlygą: jeigu kintamasis $a daugiau už $b, spaudintų tekstą: "a daugiau už b" .
 	if ($a > $b) {
@@ -69,7 +69,7 @@
 	$b = "5";
 	$c = "6";
 	$d = 4;
-	
+
 	$e = $d + $a - $b + $c;
 	echo "1var. Reikia ištrinti kintamajį C iš formulės:<br/>";
 	echo "4 + 11 - 5 + 0 = 10<br/><br/>";
@@ -123,13 +123,10 @@
 <h3>10.</h3>
 <?php
 //10. Turime masyvą. Padidinkite jo elementų reikšmes 10 kartų ir atspausdinkite.
-	$a = array (10,20,30);
-	for ($i = 0; $i < 10; $i++) {
-		foreach ($a as $k => $v) {
-			$a[$k] = $a[$k] + 1;
-			$k++;
-		}
-	}
+    $a = [10,20,30];
+    array_walk($a, function (&$item) {
+        $item = $item * 10;
+    });
 	var_dump($a);
 ?>
 <!---------------------------------------->
@@ -137,15 +134,13 @@
 <?php
 //11. Turime masyvą.
 //Sukurkite seno masyvo pagrindu naują masyvą. Palikite tiek elementų, kokia yra pirma masyvo reikšmė ir atspausdinkite.
-	$a = array(3,10,20,30,40,50);
+	$a = [3,10,20,30,40,50];
 
-	$b = $a;
-	$k = $b[0];
-	$s = sizeof($b);
-	for ($i = $s; $i >= $k; $i--) {
-		unset($b[$i]);
+	$newArray = [];
+	for ($i = 1, $k = reset($a); $i <= $k; $i++) {
+        $newArray[] = $a[$i];
 	}
-	var_dump($b);
+	var_dump($newArray);
 ?>
 
 <!---------------------------------------->
@@ -153,12 +148,11 @@
 <?php
 //12. Turime masyvą.
 //Sukurkite seno masyvo pagrindu naują masyvą. Sumažinkite jo elementų kiekį 2 kartus, t.y. palikite kas antrą elementą ir atspausdinkite.
-	$a = array (10,20,30,50,60,70,80);
+	$a = [10,20,30,50,60,70,80];
 
 	$b = $a;
-	$s = sizeof($b);
-	for ($i = 0; $i <= $s; $i++) {
-		$i++;
+	for ($i = 0, $s = sizeof($b); $i <= $s; $i++) {
+	    $i++;
 		unset($b[$i]);
 	}
 	var_dump($b);

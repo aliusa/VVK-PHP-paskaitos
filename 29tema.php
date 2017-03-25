@@ -26,7 +26,7 @@
 	//Jei nenustatyta kombinacija nuorodoje - nustatom
 	if (!$link){
 		//pradinis moneų masyvas
-		$arr = array ("silver", "copper", "silver", "copper", "silver", "copper");
+		$arr = ["silver", "copper", "silver", "copper", "silver", "copper"];
 	} else {
 		$link = trim($link, SEPERATOR);
 		//Priešingu atveju imam duomenis iš nuorodos
@@ -70,11 +70,11 @@
 
 	//monetų paveikslėlių masyvas
 	function coinArray() {
-		$mas = array (
+		return [
 			"copper"	=> "29tema_coin_copper.png",
 			"silver"	=> "29tema_coin_silver.png",
-			"gold"		=> "29tema_coin_gold.png");
-		return $mas;
+			"gold"		=> "29tema_coin_gold.png"
+        ];
 	}
 	$arrPic = coinArray();
 

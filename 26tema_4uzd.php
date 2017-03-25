@@ -4,7 +4,7 @@
 //Funkciją iškvieskite su įvairiu parametro dydžiu.
 
 	function fff($a) {
-		$masyvas = array('','vilnius','kaunas','klaipeda','siauliai','panevezys');
+		$masyvas = ['','vilnius','kaunas','klaipeda','siauliai','panevezys'];
 		$kiekis = count($masyvas);
 		echo("<SELECT name='kintamieji'>\n");
 		$i = $a;

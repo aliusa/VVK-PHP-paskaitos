@@ -25,8 +25,8 @@ if (isset($_GET['submit'])) {
 	}
 	
 	$len = strlen($str); //nauajs eilutės ilgis
-	$arrNumbs = array("1","2","3","4","5","6","7","8","="); //skaičių masyvas
-	$arrChars = array("ą","č","ę","ė","į","š","ų","ū","ž"); //raidžių masyvas
+	$arrNumbs = ["1","2","3","4","5","6","7","8","="]; //skaičių masyvas
+	$arrChars = ["ą","č","ę","ė","į","š","ų","ū","ž"]; //raidžių masyvas
 
 	$c = 0;
 	$len = strlen($str); //nauajs eilutės ilgis

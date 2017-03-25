@@ -29,7 +29,7 @@
 		}
 
 		//print to monitor
-		$colors = array(1=>"red", 2=>"blue", 3=>"green", 4=>"yellow", 5=>"orange");
+		$colors = [1=>"red", 2=>"blue", 3=>"green", 4=>"yellow", 5=>"orange"];
 		for ($i = 1; $i <= COUNT; $i++) {
 			echo "$i: ${hits[$i]}";
 			$width = (100 * $hits[$i] / $viso) . "px";
